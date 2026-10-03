@@ -560,13 +560,11 @@ async function isAuthAdmin(id, env) {
 }
 
 // ===== /help 文案 =====
-const OWNER_HELP_TEXT = `<b>所有者命令</b>
-
-公开命令：/start 打开控制面板，/help 查看本说明
-隐藏命令：/delete_topic 用户ID（删除该用户话题并清空其数据）
-
-群组命令：/del 引用消息后撤回，/reset 重置用户验证，/new_card 新建资料卡，/delete_topic 用户ID 删除话题
-普通用户私聊：/start、/del`;
+const OWNER_HELP_TEXT = `/start 控制面板
+/help 帮助
+/delete_topic+用户ID 删除该用户话题并清空其数据
+撤回消息不要直接删除，使用/del 命令 
+锁定话题可以给用户禁言`;
 
 // 生成“确认删除话题”的提示与按钮
 function topicDeletePrompt(prefix, uid, topicId) {
