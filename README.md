@@ -61,7 +61,7 @@
 1. 进入 **Workers 和 Pages → 创建应用程序**
 2. 选择**从 Hello World 开始**
 3. 命名 Worker（例如 `tg-bot`）→ 点击**部署**
-4. 点击**编辑代码**，**全量覆盖**：删除默认代码，把本仓库 `bot.js` 的完整代码粘贴进去
+4. 点击**编辑代码**，**全量覆盖**：删除默认代码，把本仓库 [`bot.js`](bot.js) 的完整代码粘贴进去
 5. 点击**部署**
 6. 打开 Worker 根网址，看到「✅ 机器人运行正常（Bot v1.0）」
 
@@ -83,8 +83,8 @@
 | `ADMIN_GROUP_ID`                              | `-100123456789`            | 开启话题的超级群组 ID                                        |
 | `WORKER_URL`                                  | `https://xxx.workers.dev/` | Worker 完整访问链接                                          |
 | `TELEGRAM_WEBHOOK_SECRET`                     | `随机一串字符`             | 校验 Telegram 请求，生成随机字符即可                         |
-| `TURNSTILE_SITE_KEY` / `TURNSTILE_SECRET_KEY` | `0x4AAAA...`               | 可选：用 Cloudflare 人机验证时填                             |
-| `RECAPTCHA_SITE_KEY` / `RECAPTCHA_SECRET_KEY` | `6LAAAA...`                | 可选：用 Google 人机验证时填                                 |
+| `TURNSTILE_SITE_KEY` / `TURNSTILE_SECRET_KEY` | `0x4AAAA...`               | 可选，在 Cloudflare 侧边栏选择 Turnstile → 添加站点，站点名称：任意，域：填写 Worker 域名（`workers.dev`），模式：选择 **托管**，创建后复制 **站点密钥 (Site Key)** 和 **密钥 (Secret Key)** |
+| `RECAPTCHA_SITE_KEY` / `RECAPTCHA_SECRET_KEY` | `6LAAAA...`                | 可选，需自行在 [Google reCAPTCHA Admin Console](https://www.google.com/recaptcha/admin) 创建（选择 **v2 Checkbox** 类型） |
 
 ### 6️⃣ 设置 Webhook
 
@@ -103,8 +103,10 @@ https://api.telegram.org/bot<你的BOT_TOKEN>/setWebhook?url=<你的WORKER_URL>/
 ## 🔡 使用教程
 
 1. 创建者私信发送/start 初始化，并召唤面板进行各项配置
+
 2. 发送/help 获取帮助
 3. 撤回消息用/del 命令，直接删除是单向撤回
+
 4. 锁定话题即可对用户禁言
 5. 有任何问题或建议，欢迎提`Issues`
 
