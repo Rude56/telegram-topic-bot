@@ -100,25 +100,27 @@ https://api.telegram.org/bot<你的BOT_TOKEN>/setWebhook?url=<你的WORKER_URL>/
 {"ok":true,"result":true,"description":"Webhook is already set"}
 ```
 
-## 使用教程
+## 🔡 使用教程
 
-1.创建者私信发送/start 初始化，并召唤面板进行各项配置
-
-2.发送/help 获取帮助
-
-3.撤回消息用/del 命令，直接删除是单向撤回
-
-4.锁定话题即可对用户禁言
+1. 创建者私信发送/start 初始化，并召唤面板进行各项配置
+2. 发送/help 获取帮助
+3. 撤回消息用/del 命令，直接删除是单向撤回
+4. 锁定话题即可对用户禁言
+5. 有任何问题或建议，欢迎提`Issues`
 
 ## 📝 更新日志
 
-### 🎉 v1.0 — 首个公开版本
+<details>
+<summary>🎉 v1.0 — 首个公开版本（点击展开）</summary>
+
 
 - 💬 私聊转话题、话题资料卡与置顶
 - 🛡️ 三种人机验证（Turnstile / reCAPTCHA / 问题验证）
 - 👋 欢迎语自定义、🚫 消息过滤、✂️ 撤回同步、📝 编辑同步、👍 表态同步、🗂️ 话题管理
 - 💡 自动回复、🌙 就寝时间
 - 🔐 Webhook 校验、请求限流、幂等去重与数据自动清理
+
+</details>
 
 ## 📜 许可证
 
@@ -128,4 +130,11 @@ https://api.telegram.org/bot<你的BOT_TOKEN>/setWebhook?url=<你的WORKER_URL>/
 - 🔁 基于本项目修改或衍生的作品，必须同样以 GPL-3.0 开源，并保留版权声明
 - ⚠️ 本程序不提供任何担保
 
+---
+
+## ⭐ Star 增长曲线
+
+[![Star History Chart](https://api.star-history.com/svg?repos=Rude56/telegram-topic-bot&type=Date)](https://www.star-history.com/#Rude56/telegram-topic-bot&Date)
+
 ⭐ **如果这个项目帮到了你，欢迎点个 Star！**
+
