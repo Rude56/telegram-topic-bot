@@ -1,10 +1,4 @@
-/**  
-* Telegram Bot Worker v1.0 (Customized)
-*
-* 本程序基于 GNU General Public License v3.0（GPL-3.0）发布：
-* 可自由使用、修改、再分发；衍生作品必须以相同许可证开源。
-* 完整条款见项目根目录的 LICENSE 文件。
-*/
+//Telegram Bot Worker v1.0
 
 // --- 1. 静态配置与常量 ---  
 const CACHE = {
@@ -64,7 +58,7 @@ const DEFAULTS = {
 const DELIVERED_REACTION = "👍";
 const LOCKED_NOTICE = "❌ 你已被禁言";
 const DEFAULT_PRE_WELCOME = "欢迎 {name}，请先完成验证";
-const DEFAULT_VERIFIED_WELCOME = `是否想拥有同款bot？不要999，不要99，也不要9.9，点击下方链接免费带回家：\n<a href="https://www.bing.com/">https://www.bing.com/</a>`;
+const DEFAULT_VERIFIED_WELCOME = `是否想拥有同款bot？不要999，不要99，也不要9.9，点击下方链接免费带回家：\n<a href="https://github.com/Rude56/telegram-topic-bot">https://www.bing.com/</a>`;
 
 // 幂等/限流/锁参数  
 const PROCESSED_UPDATES_TTL_MS = 7 * 24 * 60 * 60 * 1000;
