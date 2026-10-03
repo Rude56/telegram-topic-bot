@@ -58,7 +58,7 @@ const DEFAULTS = {
 const DELIVERED_REACTION = "👍";
 const LOCKED_NOTICE = "❌ 你已被禁言";
 const DEFAULT_PRE_WELCOME = "欢迎 {name}，请先完成验证";
-const DEFAULT_VERIFIED_WELCOME = `是否想拥有同款bot？不要999，不要99，也不要9.9，点击下方链接免费带回家：\n<a href="https://github.com/Rude56/telegram-topic-bot">https://www.bing.com/</a>`;
+const DEFAULT_VERIFIED_WELCOME = `是否想拥有同款bot？不要999，不要99，也不要9.9，点击下方链接免费带回家：\n<a href="https://github.com/Rude56/telegram-topic-bot">telegram-topic-bot</a>`;
 
 // 幂等/限流/锁参数  
 const PROCESSED_UPDATES_TTL_MS = 7 * 24 * 60 * 60 * 1000;
