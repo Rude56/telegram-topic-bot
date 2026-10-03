@@ -1293,8 +1293,8 @@ async function registerCommands(env) {
     for (const ownerId of effectiveOwners) {
       await api(env.BOT_TOKEN, "setMyCommands", {
         commands: [
-          { command: "start", description: "打开控制面板" },
-          { command: "help", description: "查看命令说明" }
+          { command: "start", description: "控制面板" },
+          { command: "help", description: "帮助" }
         ],
         scope: { type: "chat", chat_id: Number(ownerId) }
       });
