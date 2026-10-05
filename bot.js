@@ -1,7 +1,7 @@
-//Telegram Bot Worker v1.01
+//Telegram Bot Worker v1.02
 
 // --- 1. 静态配置与常量 ---  
-const BOT_VERSION = "1.01";
+const BOT_VERSION = "1.02";
 const CACHE = {
   data: {},
   json: new Map(),
@@ -933,7 +933,8 @@ async function relayToTopic(msg, u, env, ctx, emoji, isAdmin = false, retried = 
           u.topic_id = null;
           return relayToTopic(msg, u, env, ctx, emoji, isAdmin, true);
       }
-      return api(env.BOT_TOKEN, "sendMessage", { chat_id: uid, text: "⚠️ 转发失败: " + reason });
+      console.warn("转发失败，已提示用户重试:", reason);
+      return api(env.BOT_TOKEN, "sendMessage", { chat_id: uid, text: "⚠️ 转发失败，请稍后重新发送一次" });
   }
 
   if (relaySuccess) {
@@ -988,7 +989,7 @@ async function sendInfoCardToTopic(env, u, tgUser, tid, date) {
   try {
     const usernameStr = tgUser.username ? `@${tgUser.username}` : "无";
     return await sendAndPinCard(env, u, tid, {
-      text: `⚠️ 无法生成完整资料卡\n👤 用户: ${tgUser.first_name || "User"}\n🔗 账号: ${usernameStr}\n🆔 ID: ${tgUser.id}\n❌ 错误原因: ${reason}`
+      text: `⚠️ 无法生成完整资料卡\n👤 用户: ${tgUser.first_name || "User"}\n🔗 账号: ${usernameStr}\n🆔 ID: ${tgUser.id}`
     });
   } catch (finalErr) {
     console.error("保底发送也失败:", finalErr);
@@ -1026,7 +1027,7 @@ const tg=window.Telegram.WebApp;tg.ready();
 const UI_USER_ID=${scriptUid};
 const UI_NONCE=${scriptNonce};
 function S(t){
-  document.getElementById('m').innerText='Wait...';
+  document.getElementById('m').innerText='⏳ 正在验证，请稍候…';
   const initData=tg.initData||"";
   fetch('/submit_token',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:t,userId:UI_USER_ID,nonce:UI_NONCE,initData})})
   .then(r=>r.json()).then(d=>{
@@ -1355,7 +1356,8 @@ async function confirmTopicDelete(cb, env, uid, topicId) {
   try {
     await api(env.BOT_TOKEN, "deleteForumTopic", { chat_id: env.ADMIN_GROUP_ID, message_thread_id: topicId });
   } catch (e) {
-    return alertCallback(cb, env, `删除话题失败，用户数据未删除：${e.message || e}`);
+    console.warn("删除话题失败:", e?.message || e);
+    return alertCallback(cb, env, "删除话题失败，用户数据未删除，请稍后重试");
   }
   await deleteUserData(uid, env);
   await api(env.BOT_TOKEN, "answerCallbackQuery", { callback_query_id: cb.id, text: "话题及用户数据已删除" }).catch(() => { });
@@ -1467,7 +1469,8 @@ async function handleAdminReply(msg, env, ctx) {
               if (!newCardId) throw new Error("Telegram 没有返回新资料卡消息");
               return sendTemporaryMessage(env, ctx, { chat_id: msg.chat.id, message_thread_id: msg.message_thread_id, text: "✅ 已新建并置顶用户资料卡，旧资料卡保留" });
           } catch (e) {
-              return sendTemporaryMessage(env, ctx, { chat_id: msg.chat.id, message_thread_id: msg.message_thread_id, text: `❌ 新建资料卡失败：${e.message || e}` });
+              console.warn("新建资料卡失败:", e?.message || e);
+              return sendTemporaryMessage(env, ctx, { chat_id: msg.chat.id, message_thread_id: msg.message_thread_id, text: "❌ 新建资料卡失败，请稍后重试" });
           }
       }
       if (command === "/delete_topic") {
@@ -1888,7 +1891,8 @@ async function handleAdminInput(id, msg, state, env) {
     await setCfg(key, value, env);
     await sql(env, "DELETE FROM config WHERE key=?", ["admin_state:" + id]);
   } catch (e) {
-    return api(env.BOT_TOKEN, "sendMessage", { chat_id: id, text: "❌ 失败: " + e.message }).catch(() => {});
+    console.warn("设置保存失败:", e?.message || e);
+    return api(env.BOT_TOKEN, "sendMessage", { chat_id: id, text: "❌ 设置失败，请稍后重试" }).catch(() => {});
   }
 
   const label = LABEL_MAP[key] || key;
