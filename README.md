@@ -7,7 +7,7 @@
 ![许可证](https://img.shields.io/badge/%E8%AE%B8%E5%8F%AF%E8%AF%81-GPL--3.0-blue)
 ![平台](https://img.shields.io/badge/%E5%B9%B3%E5%8F%B0-Cloudflare%20Workers-F38020?logo=cloudflare&logoColor=white)
 ![Telegram](https://img.shields.io/badge/Telegram-Bot-26A5E4?logo=telegram&logoColor=white)
-[![Ask DeepWiki](https://img.shields.io/badge/Ask-DeepWiki-1F6FEB)](https://deepwiki.com/Rude56/telegram-topic-bot)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/Rude56/telegram-topic-bot)
 ![Star](https://img.shields.io/github/stars/Rude56/telegram-topic-bot)
 
 ## 🌟 核心特点
