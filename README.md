@@ -82,16 +82,16 @@
 | `ADMIN_IDS`                                   | `123456,789012`            | 所有者 ID（可私聊打开控制面板的账号；多人用英文逗号分隔、**无空格**） |
 | `ADMIN_GROUP_ID`                              | `-100123456789`            | 开启话题的超级群组 ID                                        |
 | `WORKER_URL`                                  | `https://xxx.workers.dev/` | Worker 完整访问链接                                          |
-| `TELEGRAM_WEBHOOK_SECRET`                     | `随机一串字符`             | 校验 Telegram 请求，生成随机字符即可                         |
+| `TELEGRAM_WEBHOOK_SECRET`                     | `随机一串字符`             | 校验 Telegram 请求，自定义随机字符                         |
 | `TURNSTILE_SITE_KEY` / `TURNSTILE_SECRET_KEY` | `0x4AAAA...`               | 可选，在 Cloudflare 侧边栏选择 Turnstile → 添加站点，站点名称：任意，域：填写 Worker 域名（`workers.dev`），模式：选择 **托管**，创建后复制 **站点密钥 (Site Key)** 和 **密钥 (Secret Key)** |
 | `RECAPTCHA_SITE_KEY` / `RECAPTCHA_SECRET_KEY` | `6LAAAA...`                | 可选，需自行在 [Google reCAPTCHA Admin Console](https://www.google.com/recaptcha/admin) 创建（选择 **v2 Checkbox** 类型） |
 
 ### 6️⃣ 设置 Webhook
 
-在浏览器地址栏输入以下 URL 并回车（替换三个占位符）：
+在浏览器地址栏输入以下 URL 并回车（替换三个占位符）：`<BOT_TOKEN>``<WORKER_URL>``<TELEGRAM_WEBHOOK_SECRET>`
 
 ```
-https://api.telegram.org/bot<你的BOT_TOKEN>/setWebhook?url=<你的WORKER_URL>/&secret_token=<你的TELEGRAM_WEBHOOK_SECRET>
+https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<WORKER_URL>/&secret_token=<TELEGRAM_WEBHOOK_SECRET>
 ```
 
 ✅ **成功响应**：
@@ -102,11 +102,9 @@ https://api.telegram.org/bot<你的BOT_TOKEN>/setWebhook?url=<你的WORKER_URL>/
 
 ## 🔡 使用教程
 
-1. 创建者私信发送/start 初始化，并召唤面板进行各项配置
-
-2. 发送/help 获取帮助
-3. 撤回消息用/del 命令，直接删除是单向撤回
-
+1. 创建者私信发送`/start`初始化，并召唤面板进行各项配置
+2. 发送`/help`获取帮助
+3. 撤回消息用`/del`命令，直接删除是单向撤回
 4. 锁定话题即可对用户禁言
 5. 有任何问题或建议，欢迎提`Issues`
 
