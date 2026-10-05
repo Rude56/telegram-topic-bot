@@ -1878,7 +1878,7 @@ async function handleAdminInput(id, msg, state, env) {
       if (!/^([01]\d|2[0-3]):([0-5]\d)$/.test(value)) {
         return api(env.BOT_TOKEN, "sendMessage", {
           chat_id: id,
-          text: "❌ <b>时间格式错误</b>\n请输入 00:00 至 23:59，例如 <code>08:00</code>、<code>23:30</code>；冒号可用 :、：、; 或 ；",
+          text: "❌ <b>时间格式错误</b>\n请输入 00:00 至 23:59，例如 <code>08:00</code>、<code>23:30</code>",
           parse_mode: "HTML"
         });
       }
