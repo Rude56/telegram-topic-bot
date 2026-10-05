@@ -7,8 +7,7 @@
 ![许可证](https://img.shields.io/badge/%E8%AE%B8%E5%8F%AF%E8%AF%81-GPL--3.0-blue)
 ![平台](https://img.shields.io/badge/%E5%B9%B3%E5%8F%B0-Cloudflare%20Workers-F38020?logo=cloudflare&logoColor=white)
 ![Telegram](https://img.shields.io/badge/Telegram-Bot-26A5E4?logo=telegram&logoColor=white)
-
----
+![Star](https://img.shields.io/github/stars/Rude56/telegram-topic-bot)
 
 ## 🌟 核心特点
 
@@ -47,48 +46,54 @@
 ### 1️⃣ 创建机器人与管理群组
 
 1. 在 [@BotFather](https://t.me/BotFather) 创建机器人，记下 `BOT_TOKEN`
-2. 建一个开启“话题（Topics）”的超级群组，把机器人拉进去并设为管理员（勾选管理话题、删除消息权限），记下群组 ID（形如 `-100xxxxxxxxxx`）
+2. 建一个开启“话题（Topics）”的超级群组，把机器人拉进去并设为管理员（勾选删除消息、管理话题、置顶消息权限），记下群组 ID（形如 `-100xxxxxxxxxx`）
 3. 获取自己的ID（通过 [@raw_data_bot](https://t.me/raw_data_bot) 获取）
 
 ### 2️⃣ 创建 D1 数据库
 
 1. 登录 [Cloudflare Dashboard](https://dash.cloudflare.com/)
 2. 导航至 **存储和数据库 → D1 数据库**
-3. 点击**创建**，名字随意
+3. 点击 **创建**，名字随意，记住名字
 
 ### 3️⃣ 创建 Worker
 
 1. 进入 **Workers 和 Pages → 创建应用程序**
-2. 选择**从 Hello World 开始**
-3. 命名 Worker（例如 `tg-bot`）→ 点击**部署**
-4. 点击**编辑代码**，**全量覆盖**：删除默认代码，把本仓库 [`bot.js`](bot.js) 的完整代码粘贴进去
-5. 点击**部署**
-6. 打开 Worker 根网址，看到「✅ 机器人运行正常（Bot v1.01）」
+2. 选择 **从 Hello World 开始**
+3. 命名 Worker（例如 `tg-bot`）→ 点击 **部署**
+4. 点击 **编辑代码**，**全量覆盖**：删除默认代码，把本仓库 [`bot.js`](bot.js) 的完整代码粘贴进去
+5. 点击 **部署**
+6. 打开 Worker 根网址，看到 `✅ 机器人运行正常（Bot v1.01）`
 
 ### 4️⃣ 绑定 D1 数据库
 
 1. 打开刚创建的 Worker → **设置 → 绑定**
-2. 点击**添加绑定**，选择 **D1 数据库**
+2. 点击 **添加绑定**，选择 **D1 数据库**
 3. 变量名必须填 `TG_BOT_DB`（一字不差），再选择刚创建的数据库
 4. 保存后重新部署
 
 ### 5️⃣ 配置环境变量
 
-在 Worker → **设置 → 变量和密钥**
+在 Worker → **设置** → **添加变量**
 
-| 变量名称                                      | 示例值                     | 说明                                                         |
-| --------------------------------------------- | -------------------------- | ------------------------------------------------------------ |
-| `BOT_TOKEN`                                   | `12345:AAH...`             | 你的 Bot Token                                               |
-| `ADMIN_IDS`                                   | `123456,789012`            | 所有者 ID（可私聊打开控制面板的账号；多人用英文逗号分隔、**无空格**） |
-| `ADMIN_GROUP_ID`                              | `-100123456789`            | 开启话题的超级群组 ID                                        |
-| `WORKER_URL`                                  | `https://xxx.workers.dev/` | Worker 完整访问链接                                          |
-| `TELEGRAM_WEBHOOK_SECRET`                     | `随机一串字符`             | 校验 Telegram 请求，自定义随机字符                         |
-| `TURNSTILE_SITE_KEY` / `TURNSTILE_SECRET_KEY` | `0x4AAAA...`               | 可选，在 Cloudflare 侧边栏选择 Turnstile → 添加站点，站点名称：任意，域：填写 Worker 域名（`workers.dev`），模式：选择 **托管**，创建后复制 **站点密钥 (Site Key)** 和 **密钥 (Secret Key)** |
-| `RECAPTCHA_SITE_KEY` / `RECAPTCHA_SECRET_KEY` | `6LAAAA...`                | 可选，需自行在 [Google reCAPTCHA Admin Console](https://www.google.com/recaptcha/admin) 创建（选择 **v2 Checkbox** 类型） |
+| 密钥名称                                        | 示例值                     | 说明                                                         |
+| ----------------------------------------------- | -------------------------- | ------------------------------------------------------------ |
+| `BOT_TOKEN`                                     | `12345:AAH...`             | 你的 Bot Token                                               |
+| `ADMIN_IDS`                                     | `123456,789012`            | 所有者 ID（可私聊打开控制面板的账号；多人用`,`分隔）         |
+| `ADMIN_GROUP_ID`                                | `-100123456789`            | 开启话题的超级群组 ID                                        |
+| `WORKER_URL`                                    | `https://xxx.workers.dev/` | Worker 完整访问链接                                          |
+| `TELEGRAM_WEBHOOK_SECRET`                       | `abc-ABC_123`              | 自定义，自己随便起一串（相当于密码），用于校验 Telegram 请求。只能使用`a-z` `A-Z` `0-9` `-` `_`（1~256位） |
+| `TURNSTILE_SITE_KEY`<br>`TURNSTILE_SECRET_KEY`  | `0x4AAAA...`               | 可选。Cloudflare→Turnstile→使用 Spin 设置，域名填你的 Worker 域名`xxx.workers.dev`，把 **站点密钥** 和 **密钥** 填入本变量 |
+| `RECAPTCHA_SITE_KEY`<br/>`RECAPTCHA_SECRET_KEY` | `6LeABCDEAAAA...`          | 可选。打开 [Google reCAPTCHA 管理后台](https://www.google.com/recaptcha/admin) 创建密钥，类型选 **v2 “进行人机身份验证”复选框**，把 **网站密钥** 和 **密钥** 填入本变量 |
+
+> **站点密钥(Site Key)** 和 **密钥(Secret Key)**
+>
+> 所有密钥和值都不含空格
+>
+> 点击 **部署 (Deploy)** 使代码和配置生效
 
 ### 6️⃣ 设置 Webhook
 
-在浏览器地址栏输入以下 URL 并回车（替换三个占位符）：`<BOT_TOKEN>``<WORKER_URL>``<TELEGRAM_WEBHOOK_SECRET>`
+在浏览器地址栏输入以下 URL 并回车（替换三个占位符）：`<BOT_TOKEN>` `<WORKER_URL>` `<TELEGRAM_WEBHOOK_SECRET>`
 
 ```
 https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<WORKER_URL>/&secret_token=<TELEGRAM_WEBHOOK_SECRET>
@@ -102,25 +107,24 @@ https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<WORKER_URL>/&secret_toke
 
 ## 🔡 使用教程
 
-1. 创建者私信发送`/start`初始化，并召唤面板进行各项配置
-2. 发送`/help`获取帮助
-3. 撤回消息用`/del`命令，直接删除是单向撤回
-4. 锁定话题即可对用户禁言
-5. 有任何问题或建议，欢迎提`Issues`
+1. 创建者私信发送 `/start` 初始化
+2. 召唤面板进行各项配置
+3. 发送 `/help` 获取帮助
+4. 有任何问题或建议，欢迎提 [Issues](https://github.com/Rude56/telegram-topic-bot/issues)
 
 ## 📝 更新日志
 
 <details>
-<summary>🎉 v1.0 — 首个公开版本（点击展开）</summary>
+<summary>v1.0 首个公开版本</summary>
 
 
-- 💬 私聊转话题、话题资料卡与置顶
-- 🛡️ 三种人机验证（Turnstile / reCAPTCHA / 问题验证）
-- 👋 欢迎语自定义、🚫 消息过滤、✂️ 撤回同步、📝 编辑同步、👍 表态同步、🗂️ 话题管理
-- 💡 自动回复、🌙 就寝时间
-- 🔐 Webhook 校验、请求限流、幂等去重与数据自动清理
-
-</details>
+- 每位用户自动建独立话题并附资料卡
+- 三种人机验证（Turnstile / reCAPTCHA / 问题验证）
+- 撤回同步、编辑同步、表态同步
+- 欢迎语、屏蔽词、消息类型开关、自动回复、就寝时间
+- 禁言、重置验证、新建资料卡、删除话题
+- Webhook 校验、请求限流、幂等去重与数据自动清理
+  </details>
 
 ## 📜 许可证
 
@@ -130,11 +134,16 @@ https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<WORKER_URL>/&secret_toke
 - 🔁 基于本项目修改或衍生的作品，必须同样以 GPL-3.0 开源，并保留版权声明
 - ⚠️ 本程序不提供任何担保
 
----
+## 🙏 致谢
+
+本项目的思路与部分实现参考了以下开源项目，感谢作者的无私分享：
+
+- [huliyoudiangou/TG_Chat_Bot-D1](https://github.com/huliyoudiangou/TG_Chat_Bot-D1)
+- [moistrr/TGbot-D1](https://github.com/moistrr/TGbot-D1)
+
 
 ## ⭐ Star 增长曲线
 
 [![Star History Chart](https://api.star-history.com/svg?repos=Rude56/telegram-topic-bot&type=Date)](https://www.star-history.com/#Rude56/telegram-topic-bot&Date)
 
 ⭐ **如果这个项目帮到了你，欢迎点个 Star！**
-
