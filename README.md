@@ -3,7 +3,7 @@
 > 🎯 把用户私聊消息集中到管理群的独立话题里：验证、过滤、撤回、话题管理，一站式搞定
 > ☁️ 基于 Cloudflare Workers + D1，无需服务器，复制代码即可上线
 
-![版本](https://img.shields.io/badge/%E7%89%88%E6%9C%AC-v1.0-brightgreen)
+![版本](https://img.shields.io/badge/%E7%89%88%E6%9C%AC-v1.01-brightgreen)
 ![许可证](https://img.shields.io/badge/%E8%AE%B8%E5%8F%AF%E8%AF%81-GPL--3.0-blue)
 ![平台](https://img.shields.io/badge/%E5%B9%B3%E5%8F%B0-Cloudflare%20Workers-F38020?logo=cloudflare&logoColor=white)
 ![Telegram](https://img.shields.io/badge/Telegram-Bot-26A5E4?logo=telegram&logoColor=white)
@@ -63,7 +63,7 @@
 3. 命名 Worker（例如 `tg-bot`）→ 点击**部署**
 4. 点击**编辑代码**，**全量覆盖**：删除默认代码，把本仓库 [`bot.js`](bot.js) 的完整代码粘贴进去
 5. 点击**部署**
-6. 打开 Worker 根网址，看到「✅ 机器人运行正常（Bot v1.0）」
+6. 打开 Worker 根网址，看到「✅ 机器人运行正常（Bot v1.01）」
 
 ### 4️⃣ 绑定 D1 数据库
 
