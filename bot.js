@@ -1,6 +1,7 @@
-//Telegram Bot Worker v1.0
+//Telegram Bot Worker v1.01
 
 // --- 1. 静态配置与常量 ---  
+const BOT_VERSION = "1.01";
 const CACHE = {
   data: {},
   json: new Map(),
@@ -106,7 +107,7 @@ export default {
       await dbInit(env);
       if (req.method === "GET") {
         if (url.pathname === "/verify") return handleVerifyPage(url, env);
-        if (url.pathname === "/") return new Response("✅ 机器人运行正常（Bot v1.0）", { status: 200 });
+        if (url.pathname === "/") return new Response(`✅ 机器人运行正常（Bot v${BOT_VERSION}）`, { status: 200 });
       }
 
       if (req.method === "POST") {
@@ -132,7 +133,7 @@ export default {
       return new Response("❌ 机器人内部错误，请稍后重试", { status: 500 });
     }
 
-    return new Response("❌ 页面不存在（Bot v1.0）", { status: 404 });
+      return new Response(`❌ 页面不存在（Bot v${BOT_VERSION}）`, { status: 404 });
   }
 };
 
@@ -1558,7 +1559,7 @@ const back = { text: "🔙 返回", callback_data: "config:menu" };
 
 try {
   if (!type || type === "menu") {
-    if (!key) return render("⚙️ <b>控制面板</b>", {
+    if (!key) return render(`⚙️ <b>控制面板</b>（v${BOT_VERSION}）`, {
       inline_keyboard: [
         [{ text: "🛡️ 人机验证", callback_data: "config:menu:base" }, { text: "👋 欢迎语", callback_data: "config:menu:welcome" }],
         [{ text: "🤖 自动回复", callback_data: "config:menu:ar" }, { text: "🚫 屏蔽词", callback_data: "config:menu:kw" }],
