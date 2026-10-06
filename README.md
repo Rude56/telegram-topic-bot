@@ -97,7 +97,7 @@
 在浏览器地址栏输入以下 URL 并回车（替换三个占位符）：`<BOT_TOKEN>` `<WORKER_URL>` `<TELEGRAM_WEBHOOK_SECRET>`
 
 ```
-https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<WORKER_URL>/&secret_token=<TELEGRAM_WEBHOOK_SECRET>
+https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=<WORKER_URL>&secret_token=<TELEGRAM_WEBHOOK_SECRET>
 ```
 
 ✅ **成功响应**：
