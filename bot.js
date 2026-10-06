@@ -1,4 +1,4 @@
-//Telegram Bot Worker v1.02
+//Telegram Bot Worker v1.03
 
 // --- 1. 静态配置与常量 ---  
 const BOT_VERSION = "1.02";
@@ -31,7 +31,7 @@ const DEFAULTS = {
   verified_welcome_messages: "[]",
 
   // 验证  
-  enable_verify: "true",
+  enable_verify: "false",
   enable_qa_verify: "true",
   captcha_mode: "turnstile",
   verif_q: "1+1=?",
@@ -45,7 +45,7 @@ const DEFAULTS = {
   enable_forward_forwarding: "true",
   enable_audio_forwarding: "true",
   enable_sticker_forwarding: "true",
-  enable_other_forwarding: "true",
+  enable_other_forwarding: "false",
 
   // 就寝时间与自动回复
   enable_sleep_mode: "false",
